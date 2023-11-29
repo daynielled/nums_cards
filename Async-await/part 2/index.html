@@ -4,11 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numbers</title>
+    <title>Cards!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: green;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #drawButton {
+            background-color: #3498db;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #drawButton:hover {
+            background-color: #2980b9;
+        }
+
+
+        #cardContainer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #cardContainer p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="facts-container"></div>
+    <button id="drawButton">Draw a Card</button>
+    <div id="cardContainer"></div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
