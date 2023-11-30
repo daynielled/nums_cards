@@ -1,5 +1,6 @@
 let favoriteNumber = 7;
-let baseURL = "http://numbersapi.com/";
+let favoriteNumbers = [6, 15, 22];
+let baseURL = "http://numbersapi.com";
 
 // Question 1
 async function getFact() {
@@ -9,10 +10,14 @@ async function getFact() {
 getFact();
 
 // Question 2
-const favoriteNumbers = [7, 11, 22];
 async function getFactsForNumbers() {
-    let data = await $.getJSON(`${baseURL}/${favoriteNumbers}?json`);
-    console.log(data);
+    let dataArray = await Promise.all(favoriteNumbers.map(number =>
+        $.getJSON(`${baseURL}/${number}?json`)
+    )
+    );
+    dataArray.forEach((data, index) => {
+        $('#facts-container').append(`<p>Fun Fact For ${favoriteNumbers[index]}: ${data.text}</p>`);
+    });
 }
 getFactsForNumbers();
 
@@ -20,7 +25,7 @@ getFactsForNumbers();
 
 async function fetchAndDisplayFacts() {
     let facts = await Promise.all(
-        Array.from({ length: 4 }, () => $.getJSON(`${baseURL}/${favoriteNumbers}?json`))
+        Array.from({ length: 4 }, () => $.getJSON(`${baseURL}/${favoriteNumber}?json`))
     );
     facts.forEach(data => {
         $('body').append(`<p>${data.text}</p>`);
